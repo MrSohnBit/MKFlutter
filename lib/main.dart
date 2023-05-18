@@ -81,49 +81,44 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
           'MOVEMENT BEYOND PHYSICAL THERAPY SOLUTIONS',
         ),
       ),
-      body: IndexedStack(
-        index: _currentIndex,
+      body: Column(
         children: [
-          Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(),
-                ),
-                child: TabBar(
-                  tabs: [
-                    component.tabButton('HOME'),
-                    component.tabButton('ABOUT US'),
-                    component.tabButton('OUR SERVICES'),
-                    component.tabButton('SUPPLIES'),
-                    component.tabButton('INSURANCES'),
-                    component.tabButton('CONTCT US'),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(),
+            ),
+            child: TabBar(
+              tabs: [
+                component.tabButton('HOME'),
+                component.tabButton('ABOUT US'),
+                component.tabButton('OUR SERVICES'),
+                component.tabButton('SUPPLIES'),
+                component.tabButton('INSURANCES'),
+                component.tabButton('CONTCT US'),
+              ],
+
+              indicator: const BoxDecoration(
+                gradient: LinearGradient(  //배경 그라데이션 적용
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Colors.blueAccent,
+                    Colors.pinkAccent,
                   ],
-
-                  indicator: const BoxDecoration(
-                    gradient: LinearGradient(  //배경 그라데이션 적용
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [
-                        Colors.blueAccent,
-                        Colors.pinkAccent,
-                      ],
-                    ),
-                  ),
-                  labelColor: Colors.white,
-                  unselectedLabelColor: Colors.black,
-                  controller: _tabController,
                 ),
               ),
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.black,
+              controller: _tabController,
+            ),
+          ),
 
-              Expanded(
-                child: TabBarView(
-                  controller: _tabController,
-                  children: List.generate(_bodyPageArray.length, (i) => component.scrollBody(context, _bodyPageArray[i])),
-                  // _bodyPageArray
-                ),
-              ),
-            ],
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: List.generate(_bodyPageArray.length, (i) => component.scrollBody(context, _bodyPageArray[i])),
+              // _bodyPageArray
+            ),
           ),
         ],
       ),

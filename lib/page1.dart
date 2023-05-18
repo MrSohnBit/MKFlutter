@@ -1,41 +1,23 @@
 
 import 'package:flutter/material.dart';
-import 'package:mkflutter/Component.dart';
 
 class TabPage1 extends StatelessWidget {
   const TabPage1({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final component = Componenet();
     return _page1BodyWidget(context);
-
-    // return SingleChildScrollView(
-    //   child: Column(
-    //     crossAxisAlignment: CrossAxisAlignment.center,
-    //     mainAxisAlignment: MainAxisAlignment.start,
-    //     children: [
-    //       // Body
-    //       Padding(
-    //         padding: const EdgeInsets.symmetric(horizontal:20.0),
-    //         child: SizedBox(
-    //             width: component.maxWidth(context),
-    //             child: _page1BodyWidget(context)
-    //         ),
-    //       ),
-    //       // Bottom
-    //       const BottomLayout()
-    //     ],
-    //   ),
-    // );
   }
 
   Widget _page1BodyWidget(BuildContext context) {
+    final deviceWidth = MediaQuery.of(context).size.width;
+    final deviceHeight = MediaQuery.of(context).size.height;
+
     return Column(
       children: [
-        const SizedBox(
+        SizedBox(
             height: 200,
-            child: Text('page1')
+            child: Text('Width : $deviceWidth\nHeight : $deviceHeight')
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -54,11 +36,13 @@ class TabPage1 extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal:20.0),
                 child: Column(
                   children: const [
-                    SelectableText('Our Story1', textAlign: TextAlign.center, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+                    SelectableText('Our Story', textAlign: TextAlign.center, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                     // SizedBox.fromSize(size: const Size.fromHeight(20),),
                     SelectableText.rich(
                         textAlign: TextAlign.center,
-                        TextSpan(text:'Find out about our organization mission, our methods, and the results of our treatments.We are striving hard to be the best physical therapist in Woodbridge, Virginia.')),
+                        TextSpan(text:'Find out about our organization mission, our methods, and the results of our treatments.We are striving hard to be the best physical therapist in Woodbridge, Virginia.')
+                    ),
+
                   ],
                 ),
               ),
@@ -76,7 +60,7 @@ class TabPage1 extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal:20.0),
                 child: Column(
                   children: const [
-                    SelectableText('Our Story2', textAlign: TextAlign.center, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+                    SelectableText('Contact Us', textAlign: TextAlign.center, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                     // SizedBox.fromSize(size: const Size.fromHeight(20),),
                     SelectableText.rich(
                         textAlign: TextAlign.center,
