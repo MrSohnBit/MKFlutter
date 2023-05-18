@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:mkflutter/Component.dart';
+import 'package:mkflutter/page1.dart';
+import 'package:mkflutter/page2.dart';
+import 'package:mkflutter/page3.dart';
+import 'package:mkflutter/page4.dart';
+import 'package:mkflutter/page5.dart';
+import 'package:mkflutter/page6.dart';
 
 void main() => runApp(const Main());
 
-const _tabPageArray = <Widget>[
+const _bodyPageArray = <Widget>[
   TabPage1(),
   TabPage2(2),
   TabPage3(),
@@ -53,7 +60,7 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
   @override
   void initState() {
     _tabController = TabController(
-      length: _tabPageArray.length,
+      length: _bodyPageArray.length,
       vsync: this,  //vsync에 this 형태로 전달해야 애니메이션이 정상 처리됨
     );
     _tabController.addListener(() {
@@ -66,6 +73,8 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final component = Componenet();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -83,12 +92,12 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
                 ),
                 child: TabBar(
                   tabs: [
-                    _tabButton('HOME'),
-                    _tabButton('ABOUT US'),
-                    _tabButton('OUR SERVICES'),
-                    _tabButton('SUPPLIES'),
-                    _tabButton('INSURANCES'),
-                    _tabButton('CONTCT US'),
+                    component.tabButton('HOME'),
+                    component.tabButton('ABOUT US'),
+                    component.tabButton('OUR SERVICES'),
+                    component.tabButton('SUPPLIES'),
+                    component.tabButton('INSURANCES'),
+                    component.tabButton('CONTCT US'),
                   ],
 
                   indicator: const BoxDecoration(
@@ -107,11 +116,18 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
                 ),
               ),
 
-
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
-                  children: _tabPageArray
+                  children: [
+                    component.scrollBody(context, _bodyPageArray[0]),
+                    component.scrollBody(context, _bodyPageArray[1]),
+                    component.scrollBody(context, _bodyPageArray[2]),
+                    component.scrollBody(context, _bodyPageArray[3]),
+                    component.scrollBody(context, _bodyPageArray[4]),
+                    component.scrollBody(context, _bodyPageArray[5]),
+                  ]
+                  // _bodyPageArray
                 ),
               ),
             ],
@@ -122,227 +138,12 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
   }
 }
 
-Widget _tabButton(String text) {
-  return Container(
-    height: 50,
-    alignment: Alignment.center,
-    child: Text(
-      text,
-    ),
-  );
-}
-
-class TabPage1 extends StatelessWidget {
-  const TabPage1({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-
-    double maxWidth() {
-      final deviceWidth = MediaQuery.of(context).size.width;
-      return deviceWidth > 1000 ? 1000 : deviceWidth;
-    }
-
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          // Body
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal:20.0),
-            child: SizedBox(
-                width: maxWidth(),
-                child: _bodyWidget(context)
-            ),
-          ),
-          // Bottom
-          const BottomLayout()
-        ],
-      ),
-    );
-  }
-
-  Widget _bodyWidget(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(
-            height: 200,
-            child: Text('page1')
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-              flex: 5,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.network('https://i.pinimg.com/564x/d0/fe/0f/d0fe0f49e9670685e429c3087c159f1c.jpg'),
-              ),
-            ),
-
-              Expanded(
-                flex: 5,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal:20.0),
-                  child: Column(
-                    children: const [
-                      SelectableText('Our Story1', textAlign: TextAlign.center, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-                      // SizedBox.fromSize(size: const Size.fromHeight(20),),
-                      SelectableText.rich(
-                          textAlign: TextAlign.center,
-                          TextSpan(text:'Find out about our organization mission, our methods, and the results of our treatments.We are striving hard to be the best physical therapist in Woodbridge, Virginia.')),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-          SizedBox.fromSize(size: const Size.fromHeight(80),),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                flex: 5,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal:20.0),
-                  child: Column(
-                    children: const [
-                      SelectableText('Our Story2', textAlign: TextAlign.center, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-                      // SizedBox.fromSize(size: const Size.fromHeight(20),),
-                      SelectableText.rich(
-                          textAlign: TextAlign.center,
-                          TextSpan(text:'Find out about our organization mission, our methods, and the results of our treatments.We are striving hard to be the best physical therapist in Woodbridge, Virginia.')),
-                    ],
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 5,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.network('https://i.pinimg.com/564x/74/4e/05/744e054fc7a7384083b365f86be56631.jpg'),
-                ),
-              ),
-            ],
-          ),
-
-          SizedBox.fromSize(size: const Size.fromHeight(50),),
-        ],
-    );
-  }
-}
-
-class TabPage2 extends StatelessWidget {
-  const TabPage2(this.index, {Key? key}) : super(key: key);
-  final int index;
-
-  @override
-  Widget build(BuildContext context) {
-
-    // 공간 크기를 지정하고, FittedBox를 사용.
-    return Row(
-      children: [
-        SizedBox(
-          width: 40,
-          child: FittedBox(
-            fit: BoxFit.fitWidth, // 가로 길이에 맞추도록 설정.
-            child: Text('Item$index'),
-          ),
-        ),
-        Expanded(
-          child: Container(
-            height: 100,
-            color: Colors.blue,
-          ),
-        )
-      ],
-    );
-  }
-}
-
-class TabPage3 extends StatelessWidget {
-  const TabPage3({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        Text('page3'),
-      ],
-    );
-  }
-}
-
-class TabPage4 extends StatelessWidget {
-  const TabPage4({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        Text('page4'),
-      ],
-    );
-  }
-}
-
-class TabPage5 extends StatelessWidget {
-  const TabPage5({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        Text('page5'),
-      ],
-    );
-  }
-}
-
-class TabPage6 extends StatelessWidget {
-  const TabPage6({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        Text('page6'),
-      ],
-    );
-  }
-}
 
 
 
-class BottomLayout extends StatelessWidget {
-  const BottomLayout({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      color: Theme.of(context).primaryColor,
 
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            SelectableText('BMH PHYSICAL THERAPY, 4495 CHESHIRE STATION PLAZA, WOODBRIDGE, VA, 22193, UNITED'),
-            SelectableText('STATEST. 571-659-2540 M. 571-651-0847BMHPHYSICALTHERAPY@GMAIL.COM'),
-          ],
-        ),
-      ),
-    );
-  }
-}
+
+
+
+
+
