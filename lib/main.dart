@@ -137,6 +137,12 @@ class TabPage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    double maxWidth() {
+      final deviceWidth = MediaQuery.of(context).size.width;
+      return deviceWidth > 1000 ? 1000 : deviceWidth;
+    }
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -145,7 +151,10 @@ class TabPage1 extends StatelessWidget {
           // Body
           Padding(
             padding: const EdgeInsets.symmetric(horizontal:20.0),
-            child: _bodyWidget(),
+            child: SizedBox(
+                width: maxWidth(),
+                child: _bodyWidget(context)
+            ),
           ),
           // Bottom
           const BottomLayout()
@@ -154,7 +163,7 @@ class TabPage1 extends StatelessWidget {
     );
   }
 
-  Widget _bodyWidget() {
+  Widget _bodyWidget(BuildContext context) {
     return Column(
       children: [
         const SizedBox(
@@ -172,55 +181,55 @@ class TabPage1 extends StatelessWidget {
               ),
             ),
 
-            Expanded(
-              flex: 5,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal:20.0),
-                child: Column(
-                  children: const [
-                    SelectableText('Our Story1', textAlign: TextAlign.center, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-                    // SizedBox.fromSize(size: const Size.fromHeight(20),),
-                    SelectableText.rich(
-                        textAlign: TextAlign.center,
-                        TextSpan(text:'Find out about our organization mission, our methods, and the results of our treatments.We are striving hard to be the best physical therapist in Woodbridge, Virginia.')),
-                  ],
+              Expanded(
+                flex: 5,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal:20.0),
+                  child: Column(
+                    children: const [
+                      SelectableText('Our Story1', textAlign: TextAlign.center, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+                      // SizedBox.fromSize(size: const Size.fromHeight(20),),
+                      SelectableText.rich(
+                          textAlign: TextAlign.center,
+                          TextSpan(text:'Find out about our organization mission, our methods, and the results of our treatments.We are striving hard to be the best physical therapist in Woodbridge, Virginia.')),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+          SizedBox.fromSize(size: const Size.fromHeight(80),),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                flex: 5,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal:20.0),
+                  child: Column(
+                    children: const [
+                      SelectableText('Our Story2', textAlign: TextAlign.center, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+                      // SizedBox.fromSize(size: const Size.fromHeight(20),),
+                      SelectableText.rich(
+                          textAlign: TextAlign.center,
+                          TextSpan(text:'Find out about our organization mission, our methods, and the results of our treatments.We are striving hard to be the best physical therapist in Woodbridge, Virginia.')),
+                    ],
+                  ),
                 ),
               ),
-            )
-          ],
-        ),
-        SizedBox.fromSize(size: const Size.fromHeight(80),),
-
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-              flex: 5,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal:20.0),
-                child: Column(
-                  children: const [
-                    SelectableText('Our Story2', textAlign: TextAlign.center, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-                    // SizedBox.fromSize(size: const Size.fromHeight(20),),
-                    SelectableText.rich(
-                        textAlign: TextAlign.center,
-                        TextSpan(text:'Find out about our organization mission, our methods, and the results of our treatments.We are striving hard to be the best physical therapist in Woodbridge, Virginia.')),
-                  ],
+              Expanded(
+                flex: 5,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.network('https://i.pinimg.com/564x/74/4e/05/744e054fc7a7384083b365f86be56631.jpg'),
                 ),
               ),
-            ),
-            Expanded(
-              flex: 5,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.network('https://i.pinimg.com/564x/74/4e/05/744e054fc7a7384083b365f86be56631.jpg'),
-              ),
-            ),
-          ],
-        ),
+            ],
+          ),
 
-        SizedBox.fromSize(size: const Size.fromHeight(50),),
-      ],
+          SizedBox.fromSize(size: const Size.fromHeight(50),),
+        ],
     );
   }
 }
