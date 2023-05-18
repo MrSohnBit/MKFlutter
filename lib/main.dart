@@ -119,14 +119,7 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
-                  children: [
-                    component.scrollBody(context, _bodyPageArray[0]),
-                    component.scrollBody(context, _bodyPageArray[1]),
-                    component.scrollBody(context, _bodyPageArray[2]),
-                    component.scrollBody(context, _bodyPageArray[3]),
-                    component.scrollBody(context, _bodyPageArray[4]),
-                    component.scrollBody(context, _bodyPageArray[5]),
-                  ]
+                  children: List.generate(_bodyPageArray.length, (i) => component.scrollBody(context, _bodyPageArray[i])),
                   // _bodyPageArray
                 ),
               ),
