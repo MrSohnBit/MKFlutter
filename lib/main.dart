@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mkflutter/Component.dart';
-import 'package:mkflutter/page1.dart';
-import 'package:mkflutter/page2.dart';
-import 'package:mkflutter/page3.dart';
-import 'package:mkflutter/page4.dart';
-import 'package:mkflutter/page5.dart';
-import 'package:mkflutter/page6.dart';
+import 'package:mkflutter/page/page1.dart';
+import 'package:mkflutter/page/page2.dart';
+import 'package:mkflutter/page/page3.dart';
+import 'package:mkflutter/page/page4.dart';
+import 'package:mkflutter/page/page5.dart';
+import 'package:mkflutter/page/page6.dart';
 
 void main() => runApp(const Main());
 
@@ -73,7 +73,7 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final component = Componenet();
+    final component = Componenent();
 
     return Scaffold(
       appBar: AppBar(
