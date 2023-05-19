@@ -87,34 +87,30 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
     final component = Componenent();
     final deviceWidth = MediaQuery.of(context).size.width;
     final isMobile = deviceWidth < mobileWidth;
+
+    var drawMenus = <Widget>[const DrawerHeader(
+                      decoration: BoxDecoration(
+                          color: Colors.blue,
+                      ),
+                        child: Text('헤더'),
+                      )];
+    drawMenus.addAll(List.generate(menuLabels.length, (i) => component.drawListTile(context, _tabController, menuLabels[i], i)));
+
     return Scaffold(
-      drawer: isMobile
+      endDrawer: isMobile
         ? Drawer(
           child: ListView(
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('헤더'),
-            ),
-
-            component.drawListTile(context, _tabController, menuLabels[0], 0),
-            component.drawListTile(context, _tabController, menuLabels[1], 1),
-            component.drawListTile(context, _tabController, menuLabels[2], 2),
-            component.drawListTile(context, _tabController, menuLabels[3], 3),
-            component.drawListTile(context, _tabController, menuLabels[4], 4),
-            component.drawListTile(context, _tabController, menuLabels[5], 5),
-          ],
+          children: drawMenus,
         ),
       )
       : null,
       appBar: isMobile
         ? AppBar(
-          title: const Text(
-            'Mobile',
+          title: TextButton(
+            onPressed: () => (_tabController.index = 0),
+            child: const Text("Mobile",style: TextStyle(color: Colors.white)),
           ),
         )
         : AppBar(
