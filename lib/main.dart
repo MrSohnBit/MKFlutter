@@ -10,6 +10,15 @@ import 'package:mkflutter/sizer.dart';
 
 void main() => runApp(const Main());
 
+final menuLabels = [
+  'HOME',
+  'ABOUT US',
+  'OUR SERVICES',
+  'SUPPLIES',
+  'INSURANCES',
+  'CONTCT US',
+];
+
 const _bodyPageArray = <Widget>[
   TabPage1(),
   TabPage2(2),
@@ -91,12 +100,13 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
               ),
               child: Text('헤더'),
             ),
-            component.drawListTile(context, _tabController, 'HOME', 0),
-            component.drawListTile(context, _tabController, 'ABOUT US', 1),
-            component.drawListTile(context, _tabController, 'OUR SERVICES', 2),
-            component.drawListTile(context, _tabController, 'SUPPLIES', 3),
-            component.drawListTile(context, _tabController, 'INSURANCES', 4),
-            component.drawListTile(context, _tabController, 'CONTCT US', 5),
+
+            component.drawListTile(context, _tabController, menuLabels[0], 0),
+            component.drawListTile(context, _tabController, menuLabels[1], 1),
+            component.drawListTile(context, _tabController, menuLabels[2], 2),
+            component.drawListTile(context, _tabController, menuLabels[3], 3),
+            component.drawListTile(context, _tabController, menuLabels[4], 4),
+            component.drawListTile(context, _tabController, menuLabels[5], 5),
           ],
         ),
       )
@@ -121,14 +131,7 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
                 border: Border.all(),
               ),
               child: TabBar(
-                tabs: [
-                  component.tabButton('HOME'),
-                  component.tabButton('ABOUT US'),
-                  component.tabButton('OUR SERVICES'),
-                  component.tabButton('SUPPLIES'),
-                  component.tabButton('INSURANCES'),
-                  component.tabButton('CONTCT US'),
-                ],
+                tabs: menuLabels.map((label) => component.tabButton(label)).toList(),
 
                 indicator: const BoxDecoration(
                   gradient: LinearGradient(  //배경 그라데이션 적용
