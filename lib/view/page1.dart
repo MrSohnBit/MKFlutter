@@ -62,7 +62,7 @@ class TabPage1 extends StatelessWidget {
             child: Image.asset('assets/images/744e054fc7a7384083b365f86be56631.jpg'),
           )
         ),
-        SizedBox.fromSize(size: const Size.fromHeight(50),),
+        SizedBox.fromSize(size: const Size.fromHeight(50)),
       ],
     );
   }

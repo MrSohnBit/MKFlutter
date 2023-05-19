@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mkflutter/Component.dart';
-import 'package:mkflutter/page/page1.dart';
-import 'package:mkflutter/page/page2.dart';
-import 'package:mkflutter/page/page3.dart';
-import 'package:mkflutter/page/page4.dart';
-import 'package:mkflutter/page/page5.dart';
-import 'package:mkflutter/page/page6.dart';
+import 'package:mkflutter/view/page1.dart';
+import 'package:mkflutter/view/page2.dart';
+import 'package:mkflutter/view/page3.dart';
+import 'package:mkflutter/view/page4.dart';
+import 'package:mkflutter/view/page5.dart';
+import 'package:mkflutter/view/page6.dart';
 import 'package:mkflutter/sizer.dart';
 
 void main() => runApp(const Main());
