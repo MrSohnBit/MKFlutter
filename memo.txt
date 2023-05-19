@@ -1,0 +1,9 @@
+bitbucket App Password
+ATBBX6pAG3TLjA8K3hhtCMvNHZZY3401801B
+
+
+웹 배포
+flutter build web
+
+index.html에 base href 자동으로 변경 되도록
+flutter build web --base-href "/baseUrl/"
