@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mkflutter/Component.dart';
+import 'package:mkflutter/component.dart';
 import 'package:mkflutter/view/page1.dart';
 import 'package:mkflutter/view/page2.dart';
 import 'package:mkflutter/view/page3.dart';
@@ -85,8 +85,6 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final component = Componenent();
-    final deviceWidth = MediaQuery.of(context).size.width;
-    final isMobile = deviceWidth < mobileWidth;
 
     var drawMenus = <Widget>[const DrawerHeader(
                       decoration: BoxDecoration(
@@ -121,7 +119,7 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
       body: Column(
         children: [
           Visibility(
-            visible: !isMobile,
+            visible: isPC,
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(),

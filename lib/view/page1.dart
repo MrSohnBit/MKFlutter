@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:mkflutter/Component.dart';
+import 'package:mkflutter/component.dart';
+import 'package:mkflutter/sizer.dart';
 
 class TabPage1 extends StatelessWidget {
   const TabPage1({super.key});
@@ -28,7 +29,7 @@ class TabPage1 extends StatelessWidget {
               child: Image.asset('assets/images/d0fe0f49e9670685e429c3087c159f1c.jpg'),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal:20.0),
+                padding: const EdgeInsets.symmetric(horizontal:paddingHorizontal),
                 child: Column(
                   children: const [
                     SelectableText('Our Story', textAlign: TextAlign.center, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
@@ -46,7 +47,7 @@ class TabPage1 extends StatelessWidget {
 
         componenent.expededColumnRowLayout2(context,
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal:20.0),
+            padding: const EdgeInsets.symmetric(horizontal:paddingHorizontal),
             child: Column(
               children: const [
                 SelectableText('Contact Us', textAlign: TextAlign.center, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
@@ -63,6 +64,7 @@ class TabPage1 extends StatelessWidget {
           )
         ),
         SizedBox.fromSize(size: const Size.fromHeight(50)),
+
       ],
     );
   }

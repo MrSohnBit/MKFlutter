@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:mkflutter/Component.dart';
+import 'package:mkflutter/component.dart';
 
 class TabPage3 extends StatelessWidget {
   const TabPage3({Key? key}) : super(key: key);

@@ -41,7 +41,7 @@ class Componenent {
         children: [
           // Body
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal:20.0),
+            padding: const EdgeInsets.symmetric(horizontal: paddingHorizontal),
             child: SizedBox(
                 width: component.maxWidth(context),
                 child: body

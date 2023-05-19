@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:mkflutter/Component.dart';
 
 class TabPage5 extends StatelessWidget {
   const TabPage5({Key? key}) : super(key: key);
