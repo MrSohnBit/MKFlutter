@@ -16,6 +16,16 @@ class Componenent {
     );
   }
 
+  Widget drawListTile(BuildContext context, TabController tabController, String label, int index) {
+    return ListTile(
+      title: Text(label),
+      onTap: () {
+        tabController.index = index;
+        Navigator.pop(context);
+      },
+    );
+  }
+
   /// 가로 최대 크기 맞추기
   double maxWidth(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
