@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:mkflutter/component.dart';
-import 'package:mkflutter/sizer.dart';
+import 'package:mkflutter/src/component/component.dart';
+import 'package:mkflutter/src/sizer.dart';
 
 class TabPage1 extends StatelessWidget {
   const TabPage1({super.key});

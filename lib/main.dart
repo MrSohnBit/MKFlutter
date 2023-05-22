@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mkflutter/component.dart';
-import 'package:mkflutter/view/page1.dart';
-import 'package:mkflutter/view/page2.dart';
-import 'package:mkflutter/view/page3.dart';
-import 'package:mkflutter/view/page4.dart';
-import 'package:mkflutter/view/page5.dart';
-import 'package:mkflutter/view/page6.dart';
-import 'package:mkflutter/sizer.dart';
+import 'package:mkflutter/src/component/component.dart';
+import 'package:mkflutter/src/view/page1.dart';
+import 'package:mkflutter/src/view/page2.dart';
+import 'package:mkflutter/src/view/page3.dart';
+import 'package:mkflutter/src/view/page4.dart';
+import 'package:mkflutter/src/view/page5.dart';
+import 'package:mkflutter/src/view/page6.dart';
+import 'package:mkflutter/src/sizer.dart';
 
 void main() => runApp(const Main());
 
@@ -70,6 +70,7 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
   @override
   void initState() {
     _tabController = TabController(
+      animationDuration: Duration.zero, // 탭 애니메이션 없앰
       length: _bodyPageArray.length,
       vsync: this,  //vsync에 this 형태로 전달해야 애니메이션이 정상 처리됨
     );
@@ -148,11 +149,14 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
             child: TabBarView(
               physics:
                 isMobile
-                    ? const NeverScrollableScrollPhysics()
-                    : const ClampingScrollPhysics (),
+                  ? const NeverScrollableScrollPhysics()
+                  : const ClampingScrollPhysics (),
               controller: _tabController,
-              children: List.generate(_bodyPageArray.length, (i) => component.scrollBody(context, _bodyPageArray[i])),
-              // _bodyPageArray
+              children: List.generate(_bodyPageArray.length, (i) =>
+                  (i == 4)
+                    ? _bodyPageArray[i] // 스크롤 없는 경우
+                    : component.scrollBody(context, _bodyPageArray[i]) // 스크롤 필요한 경우
+              ),
             ),
           ),
         ],
