@@ -41,22 +41,6 @@ Future<dynamic> _showdialog(BuildContext context, String title, String message, 
                 child: const Text('확인')),
           ],
         ),
-
-        // AlertDialog(
-        //   title: Text(title),
-        //   content: Text(message),
-        //   actions: [
-        //     ElevatedButton(
-        //         onPressed: () => Navigator.of(context).pop(),
-        //         child: const Text('취소')),
-        //     ElevatedButton(
-        //       onPressed: () {
-        //         callback();
-        //         Navigator.of(context).pop();
-        //       },
-        //       child: const Text('확인')),
-        //   ],
-        // ),
   );
 }
 

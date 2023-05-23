@@ -8,9 +8,11 @@ class TabPage3 extends StatelessWidget {
 
 
 
+
   @override
   Widget build(BuildContext context) {
     Componenent componenent = Componenent();
+
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Column(
@@ -37,7 +39,8 @@ class TabPage3 extends StatelessWidget {
           ElevatedButton(
             child: const Text('Toast'),
             onPressed: () {
-              showToast();
+              // componenent.showToast(context);
+              CToast.show(context, "message");
             },
           ),
         ],
@@ -45,16 +48,5 @@ class TabPage3 extends StatelessWidget {
     );
   }
 
-  void showToast() {
-    Fluttertoast.showToast(
-        msg: "This is Center Short Toast",
-        toastLength: Toast.LENGTH_LONG,
-        // gravity: ToastGravity.CENTER,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-        fontSize: 16.0
-    );
-  }
+
 }
