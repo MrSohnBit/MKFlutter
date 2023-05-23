@@ -72,7 +72,7 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
     _tabController = TabController(
       animationDuration: Duration.zero, // 탭 애니메이션 없앰
       length: _bodyPageArray.length,
-      vsync: this,  //vsync에 this 형태로 전달해야 애니메이션이 정상 처리됨
+      vsync: this, //vsync에 this 형태로 전달해야 애니메이션이 정상 처리됨
     );
     _tabController.addListener(() {
       // setState(() {
@@ -82,95 +82,94 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     final component = Componenent();
 
-    var drawMenus = <Widget>[const DrawerHeader(
-                      decoration: BoxDecoration(
-                          color: Colors.blue,
-                      ),
-                        child: Text('헤더'),
-                      )];
-    drawMenus.addAll(List.generate(menuLabels.length, (i) => component.drawListTile(context, _tabController, menuLabels[i], i)));
-
-    return Scaffold(
-      endDrawer: isMobile
-        ? Drawer(
-          child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: drawMenus,
+    var drawMenus = <Widget>[
+      const DrawerHeader(
+        decoration: BoxDecoration(
+          color: Colors.blue,
         ),
+        child: Text('헤더'),
       )
-      : null,
-      appBar: isMobile
-        ? AppBar(
-          title: TextButton(
-            onPressed: () => (_tabController.index = 0),
-            child: const Text("Mobile",style: TextStyle(color: Colors.white)),
-          ),
-        )
-        : AppBar(
-          title: const Text(
-            'MOVEMENT BEYOND PHYSICAL THERAPY SOLUTIONS',
-          ),
-        ),
-      body: Column(
-        children: [
-          Visibility(
-            visible: isPC,
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(),
-              ),
-              child: TabBar(
-                tabs: menuLabels.map((label) => component.tabButton(label)).toList(),
-
-                indicator: const BoxDecoration(
-                  gradient: LinearGradient(  //배경 그라데이션 적용
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [
-                      Colors.blueAccent,
-                      Colors.pinkAccent,
-                    ],
+    ];
+    drawMenus.addAll(List.generate(
+        menuLabels.length,
+        (i) =>
+            component.drawListTile(context, _tabController, menuLabels[i], i)));
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Scaffold(
+          endDrawer: constraints.isMobile
+              ? Drawer(
+                  child: ListView(
+                    // Important: Remove any padding from the ListView.
+                    padding: EdgeInsets.zero,
+                    children: drawMenus,
+                  ),
+                )
+              : null,
+          appBar: constraints.isMobile
+              ? AppBar(
+                  title: TextButton(
+                    onPressed: () => (_tabController.index = 0),
+                    child: const Text("Mobile",
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                )
+              : AppBar(
+                  title: const Text(
+                    'MOVEMENT BEYOND PHYSICAL THERAPY SOLUTIONS',
                   ),
                 ),
-                labelColor: Colors.white,
-                unselectedLabelColor: Colors.black,
-                controller: _tabController,
+          body: Column(
+            children: [
+              Visibility(
+                visible: !constraints.isMobile,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(),
+                  ),
+                  child: TabBar(
+                    tabs: menuLabels
+                        .map((label) => component.tabButton(label))
+                        .toList(),
+                    indicator: const BoxDecoration(
+                      gradient: LinearGradient(
+                        //배경 그라데이션 적용
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                          Colors.blueAccent,
+                          Colors.pinkAccent,
+                        ],
+                      ),
+                    ),
+                    labelColor: Colors.white,
+                    unselectedLabelColor: Colors.black,
+                    controller: _tabController,
+                  ),
+                ),
               ),
-            ),
-          ),
-
-          Expanded(
-            child: TabBarView(
-              physics:
-                isMobile
-                  ? const NeverScrollableScrollPhysics()
-                  : const ClampingScrollPhysics (),
-              controller: _tabController,
-              children: List.generate(_bodyPageArray.length, (i) =>
-                  (i == 4)
-                    ? _bodyPageArray[i] // 스크롤 없는 경우
-                    : component.scrollBody(context, _bodyPageArray[i]) // 스크롤 필요한 경우
+              Expanded(
+                child: TabBarView(
+                  physics: constraints.isMobile
+                      ? const NeverScrollableScrollPhysics()
+                      : const ClampingScrollPhysics(),
+                  controller: _tabController,
+                  children: List.generate(
+                      _bodyPageArray.length,
+                      (i) => (i == 4)
+                          ? _bodyPageArray[i] // 스크롤 없는 경우
+                          : component.scrollBody(
+                              context, _bodyPageArray[i]) // 스크롤 필요한 경우
+                      ),
+                ),
               ),
-            ),
-          ),
-        ],
-      ),
+            ],
+          ));
+      },
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
