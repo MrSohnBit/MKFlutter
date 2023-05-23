@@ -1,14 +1,16 @@
 
 import 'package:flutter/material.dart';
-import 'package:mkflutter/component.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:mkflutter/src/component/component.dart';
 
 class TabPage3 extends StatelessWidget {
   const TabPage3({Key? key}) : super(key: key);
 
+
+
   @override
   Widget build(BuildContext context) {
     Componenent componenent = Componenent();
-    
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Column(
@@ -22,7 +24,7 @@ class TabPage3 extends StatelessWidget {
               });
             },
           ),
-          SizedBox.fromSize(size: Size.fromHeight(50),),
+          SizedBox.fromSize(size: const Size.fromHeight(50),),
           ElevatedButton(
             child: const Text('쿠퍼티노 Dialog'),
             onPressed: () {
@@ -31,8 +33,28 @@ class TabPage3 extends StatelessWidget {
               });
             },
           ),
+          SizedBox.fromSize(size: const Size.fromHeight(50),),
+          ElevatedButton(
+            child: const Text('Toast'),
+            onPressed: () {
+              showToast();
+            },
+          ),
         ],
       ),
+    );
+  }
+
+  void showToast() {
+    Fluttertoast.showToast(
+        msg: "This is Center Short Toast",
+        toastLength: Toast.LENGTH_LONG,
+        // gravity: ToastGravity.CENTER,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
     );
   }
 }

@@ -22,8 +22,12 @@ class TabPage2 extends StatelessWidget {
           child: Container(
             height: 100,
             color: Colors.blue,
+            child: const Center(
+              child: Text('가운데'),
+            ),
           ),
-        )
+        ),
+        const Text('text'),
       ],
     );
   }

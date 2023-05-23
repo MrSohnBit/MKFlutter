@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mkflutter/sizer.dart';
+import 'package:mkflutter/src/sizer.dart';
 
 class Componenent {
 
