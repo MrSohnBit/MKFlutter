@@ -112,15 +112,18 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
               : null,
           appBar: constraints.isMobile
               ? AppBar(
-                  title: TextButton(
-                    onPressed: () => (_tabController.index = 0),
+                  title: GestureDetector(
+                    onTap: () => (_tabController.index = 0),
                     child: const Text("Mobile",
                         style: TextStyle(color: Colors.white)),
                   ),
                 )
               : AppBar(
-                  title: const Text(
-                    'MOVEMENT BEYOND PHYSICAL THERAPY SOLUTIONS',
+                  title: GestureDetector(
+                    onTap: () => (_tabController.index = 0),
+                    child: const Text(
+                      'PC',
+                    ),
                   ),
                 ),
           body: Column(
