@@ -11,7 +11,7 @@ import 'package:mkflutter/src/sizer.dart';
 void main() => runApp(const Main());
 
 final menuLabels = [
-  'HOME ',
+  'HOME',
   'ABOUT US',
   'OUR SERVICES',
   'SUPPLIES',

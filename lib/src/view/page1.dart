@@ -28,10 +28,10 @@ class TabPage1 extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               child: Image.asset('assets/images/d0fe0f49e9670685e429c3087c159f1c.jpg'),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal:paddingHorizontal),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal:paddingHorizontal),
                 child: Column(
-                  children: const [
+                  children: [
                     SelectableText('Our Story', textAlign: TextAlign.center, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                     // SizedBox.fromSize(size: const Size.fromHeight(20),),
                     SelectableText.rich(
@@ -46,10 +46,10 @@ class TabPage1 extends StatelessWidget {
         SizedBox.fromSize(size: const Size.fromHeight(80),),
 
         componenent.expededColumnRowLayout2(context,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal:paddingHorizontal),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal:paddingHorizontal),
             child: Column(
-              children: const [
+              children: [
                 SelectableText('Contact Us', textAlign: TextAlign.center, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                 // SizedBox.fromSize(size: const Size.fromHeight(20),),
                 SelectableText.rich(
