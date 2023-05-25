@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mkflutter/src/sizer.dart';
 
-class Componenent {
+class Component {
 
   // 탭 메뉴 버튼
   Widget tabButton(String text) {
@@ -34,7 +34,7 @@ class Componenent {
   }
 
   SingleChildScrollView scrollBody(BuildContext context, Widget body) {
-    final component = Componenent();
+    final component = Component();
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

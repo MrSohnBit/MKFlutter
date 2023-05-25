@@ -84,7 +84,7 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final component = Componenent();
+    final component = Component();
 
     var drawMenus = <Widget>[
       const DrawerHeader(
@@ -161,18 +161,23 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
                       ? const NeverScrollableScrollPhysics()
                       : const ClampingScrollPhysics(),
                   controller: _tabController,
-                  children: List.generate(
-                      _bodyPageArray.length,
-                      (i) => (i == 4)
-                          ? _bodyPageArray[i] // 스크롤 없는 경우
-                          : component.scrollBody(
-                              context, _bodyPageArray[i]) // 스크롤 필요한 경우
-                      ),
+                  children: List.generate(_bodyPageArray.length, (i) => getBody(i, component)),
                 ),
               ),
             ],
           ));
       },
     );
+  }
+
+  Widget getBody(int i, Component component) {
+    Widget body = component.scrollBody(
+        context, _bodyPageArray[i]); // 스크롤 필요한 경우
+    switch(i) {
+      case 4 :
+        body = _bodyPageArray[i];   // 스크롤이 필요 없는 경우
+        break;
+    }
+    return body;
   }
 }

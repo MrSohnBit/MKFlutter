@@ -11,7 +11,7 @@ class TabPage3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Componenent componenent = Componenent();
+    Component componenent = Component();
 
     return Padding(
       padding: const EdgeInsets.all(20.0),

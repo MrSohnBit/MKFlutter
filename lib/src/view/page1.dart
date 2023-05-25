@@ -9,11 +9,11 @@ class TabPage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final componenent = Componenent();
+    final componenent = Component();
     return _page1BodyWidget(context, componenent);
   }
 
-  Widget _page1BodyWidget(BuildContext context, Componenent componenent) {
+  Widget _page1BodyWidget(BuildContext context, Component componenent) {
     final deviceWidth = MediaQuery.of(context).size.width;
     final deviceHeight = MediaQuery.of(context).size.height;
 
